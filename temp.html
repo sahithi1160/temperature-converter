@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Temperature Converter</title>
+	<script>
+		function convertTemperature() {
+			// Get user input
+			var temperature = document.getElementById("temperature").value;
+			var unit = document.querySelector('input[name="unit"]:checked').value;
+
+			// Check for invalid input
+			if (isNaN(temperature)) {
+				alert("Invalid input! Please enter a number.");
+				return;
+			}
+
+			// Convert temperature
+			var convertedTemp;
+			var convertedUnit;
+			if (unit === "celsius") {
+				convertedTemp = (temperature * 9/5) + 32;
+				convertedUnit = "Fahrenheit";
+			} else if (unit === "fahrenheit") {
+				convertedTemp = (temperature - 32) * 5/9;
+				convertedUnit = "Celsius";
+			} else {
+				convertedTemp = temperature - 273.15;
+				convertedUnit = "Celsius";
+			}
+
+			// Display result
+			document.getElementById("result").innerHTML = convertedTemp.toFixed(2) + " " + convertedUnit;
+		}
+	</script>
+</head>
+<body>
+	<h1>Temperature Converter</h1>
+	<label for="temperature">Enter temperature:</label>
+	<input type="text" id="temperature" name="temperature">
+	<br><br>
+	<label for="unit">Choose unit:</label>
+	<input type="radio" id="celsius" name="unit" value="celsius" checked>
+	<label for="celsius">Celsius</label>
+	<input type="radio" id="fahrenheit" name="unit" value="fahrenheit">
+	<label for="fahrenheit">Fahrenheit</label>
+	<input type="radio" id="kelvin" name="unit" value="kelvin">
+	<label for="kelvin">Kelvin</label>
+	<br><br>
+	<button onclick="convertTemperature()">Convert</button>
+	<br><br>
+	<p id="result"></p>
+</body>
+</html>
